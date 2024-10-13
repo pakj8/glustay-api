@@ -5,9 +5,17 @@ const { typeDefs, resolvers } = require("./modules/index");
 // const { authenticate } = require("./middleware/middleware");
 require("dotenv").config();
 const { graphqlUploadExpress } = require("graphql-upload");
+const cors = require("cors");
 
 async function startServer() {
   const app = express();
+
+  const corsOptions = {
+    origin: "http://localhost:3000",
+    credentials: true,
+  };
+
+  app.use(cors(corsOptions));
 
   const server = new ApolloServer({
     typeDefs,
