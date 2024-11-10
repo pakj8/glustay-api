@@ -4,6 +4,10 @@ const typeDefs = gql`
   type hotel {
     _id: ID
     name: String
+    address: String
+    gmapurl: String
+    importantInfo: String
+    wifiPassword: String
   }
 
   type Booking {
@@ -11,8 +15,8 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     reservationId: String
-    checkinDate: String
-    checkOutDate: String
+    checkinDate: Date
+    checkOutDate: Date
     hotelId: hotel
   }
 
@@ -21,8 +25,8 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     reservationId: String
-    checkinDate: String
-    checkOutDate: String
+    checkinDate: Date
+    checkOutDate: Date
   }
 
   type Query {

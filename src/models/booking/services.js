@@ -2,7 +2,9 @@ const bookingSchema = require("./schema");
 
 exports.getByResID = async (reservationId) => {
   try {
-    const booking = await bookingSchema?.findOne({ reservationId });
+    const booking = await bookingSchema
+      ?.findOne({ reservationId })
+      ?.populate("hotelId", "hotelName address");
     return booking ? booking.toObject() : null;
   } catch (error) {
     console.error(error);
