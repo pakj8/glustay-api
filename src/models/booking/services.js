@@ -4,7 +4,7 @@ exports.getByResID = async (reservationId) => {
   try {
     const booking = await bookingSchema
       ?.findOne({ reservationId })
-      ?.populate("hotelId", "hotelName address");
+      ?.populate("hotelId", "hotelName address wifiPassword gmapurl");
     return booking ? booking.toObject() : null;
   } catch (error) {
     console.error(error);
