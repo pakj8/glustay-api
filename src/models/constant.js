@@ -3,4 +3,5 @@ exports.MONGOOSE_MODEL = {
   REQUEST: "request",
   BOOKING: "booking",
   WEBCHECKIN: "webcheckin",
+  REQUESTBOOKING: "requestbooking",
 };
