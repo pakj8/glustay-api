@@ -42,6 +42,7 @@ exports.updateRequestHotelId = async ({ requestId, hotelId, action }) => {
           { new: true }
         )
         .populate("hotelId", "hotelName");
+      return updatedRequest;
     } else if (action === false) {
       updatedRequest = await requestSchema
         ?.findByIdAndUpdate(
@@ -50,8 +51,8 @@ exports.updateRequestHotelId = async ({ requestId, hotelId, action }) => {
           { new: true }
         )
         .populate("hotelId", "hotelName");
+      return updatedRequest;
     }
-    return updatedRequest;
   } catch (error) {
     console.error(error);
     throw error;
