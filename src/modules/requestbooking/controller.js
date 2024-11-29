@@ -56,3 +56,23 @@ exports.getRequestBookingByObjectId = async (ObjectId) => {
     throw new error();
   }
 };
+
+exports.getRequestBooking = async () => {
+  try {
+    const data = await requestBookingServices?.getAll();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new error();
+  }
+};
+
+exports.updateStatus = async (objectId, status) => {
+  try {
+    const data = await requestBookingServices?.update(objectId, status);
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new error();
+  }
+};

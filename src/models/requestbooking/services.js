@@ -19,3 +19,30 @@ exports.getBooking = async (ObjectId) => {
     throw new error();
   }
 };
+
+exports.getAll = async () => {
+  try {
+    const data = await requestBookingSchema
+      ?.find()
+      ?.sort({ createdAt: -1 })
+      .populate("hotelId", "hotelName");
+    return data;
+  } catch (error) {
+    console.log(error);
+    trh;
+  }
+};
+
+exports.update = async (objectId, status) => {
+  try {
+    const data = await requestBookingSchema?.findByIdAndUpdate(
+      objectId,
+      { status },
+      { new: true }
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new error();
+  }
+};

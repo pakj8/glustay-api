@@ -21,6 +21,9 @@ const typeDefs = gql`
     hotelId: Hotel
     request: [Request]
     status: String
+    createdAt: Date
+    reqUniqueId: String
+    updatedAt: Date
   }
 
   input IndividualRequestInput {
@@ -45,6 +48,7 @@ const typeDefs = gql`
 
   type Mutation {
     createRequestBooking(RequestInput: RequestInput): RequestBooking
+    updateStatus(objectId: ID, status: String): RequestBooking
   }
 `;
 
