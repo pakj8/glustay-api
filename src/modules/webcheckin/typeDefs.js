@@ -4,33 +4,39 @@ const typeDefs = gql`
   scalar Date
 
   type webcheckin {
-    timeOfArrival: Date
+    _id: ID
+    timeOfArrival: String
     firstName: String
     lastName: String
     gender: String
+    reservationId: String
     age: String
     countryCode: String
     phoneNumber: String
     email: String
     residingCountry: String
-    stayedWithUs: Boolean
     governmentIdProof: String
-    uploadedProofUrl: String
+    createdAt: Date
+    updatedAt: Date
   }
 
   input WebCheckInInput {
-    timeOfArrival: Date
+    timeOfArrival: String
     firstName: String
     lastName: String
+    reservationId: String
     gender: String
     age: String
     countryCode: String
     phoneNumber: String
     email: String
     residingCountry: String
-    stayedWithUs: Boolean
     governmentIdProof: String
-    uploadedProofUrl: String
+  }
+
+  type Query {
+    getAllWebCheckInData: [webcheckin]
+    getGuestDetailsByReservationId(reservationId: String): [webcheckin]
   }
 
   type Mutation {
