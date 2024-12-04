@@ -4,6 +4,8 @@ const booking = require("./booking");
 const uploader = require("./uploader");
 const webcheckin = require("./webcheckin");
 const requestBooking = require("./requestbooking");
+const raiseComplaint = require("./raisecomplaint");
+const webcheckout = require("./webcheckout");
 
 const typeDefs = [
   hotel.typeDefs,
@@ -12,6 +14,8 @@ const typeDefs = [
   uploader?.typeDefs,
   webcheckin?.typeDefs,
   requestBooking?.typeDefs,
+  raiseComplaint?.typeDefs,
+  webcheckout?.typeDefs,
 ];
 
 const resolvers = [
@@ -21,6 +25,8 @@ const resolvers = [
   uploader?.resolvers,
   webcheckin?.resolvers,
   requestBooking?.resolvers,
+  raiseComplaint?.resolvers,
+  webcheckout?.resolvers,
 ];
 
 module.exports = { typeDefs, resolvers };

@@ -24,6 +24,7 @@ const requestBookingSchema = new mongoose.Schema(
     ],
     status: String,
     reqUniqueId: String,
+    rating: String,
   },
   {
     timestamps: true,

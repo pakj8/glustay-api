@@ -34,6 +34,7 @@ exports.createRequestBooking = async (requestInput) => {
       })),
       status: "Pending",
       reqUniqueId: `REQUNI${totalRequests + 1}`,
+      rating: "",
     };
 
     const createdRequests = await requestBookingServices.createRequest(
@@ -74,5 +75,16 @@ exports.updateStatus = async (objectId, status) => {
   } catch (error) {
     console.log(error);
     throw new error();
+  }
+};
+
+exports.getRequestBookingByReservationId = async (reservationId) => {
+  try {
+    const data = await requestBookingServices?.getByReservationId(
+      reservationId
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
   }
 };

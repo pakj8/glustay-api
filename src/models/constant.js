@@ -5,4 +5,5 @@ exports.MONGOOSE_MODEL = {
   WEBCHECKIN: "webcheckin",
   REQUESTBOOKING: "requestbooking",
   RAISECOMPLAINT: "raisecomplaint",
+  WEBCHECKOUT: "webcheckout",
 };

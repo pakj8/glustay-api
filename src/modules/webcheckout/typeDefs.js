@@ -6,31 +6,34 @@ const typeDefs = gql`
     hotelName: String
   }
 
-  type Complaint {
+  type Webcheckout {
+    _id: ID
     fullName: String
     email: String
-    subject: String
-    complaint: String
+    phoneNumber: String
+    timings: String
     reservationId: String
     hotelId: hotel
     createdAt: Date
+    updatedAt: Date
   }
 
-  input ComplaintInput {
+  input InputCheckout {
     fullName: String
     email: String
-    subject: String
-    complaint: String
+    phoneNumber: String
+    timings: String
     reservationId: String
     hotelId: ID
   }
 
   type Query {
-    getAllComplaint: [Complaint]
+    getCheckoutDetailsByReservationId(reservationId: ID): Boolean
+    getAllWebCheckout: [Webcheckout]
   }
 
   type Mutation {
-    createRaiseComplaint(ComplaintInput: ComplaintInput): Complaint
+    createWebCheckout(InputCheckout: InputCheckout): Webcheckout
   }
 `;
 
