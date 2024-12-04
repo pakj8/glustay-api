@@ -11,7 +11,11 @@ async function startServer() {
   const app = express();
 
   const corsOptions = {
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://glustay-web.vercel.app",
+    ],
     credentials: true,
   };
 
