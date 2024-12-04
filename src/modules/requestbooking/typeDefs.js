@@ -44,6 +44,7 @@ const typeDefs = gql`
   type Query {
     getRequestBooking: [RequestBooking]
     getRequestBookingByObjectId(ObjectId: ID): RequestBooking
+    getRequestBookingByReservationId(reservationId: ID): [RequestBooking]
   }
 
   type Mutation {

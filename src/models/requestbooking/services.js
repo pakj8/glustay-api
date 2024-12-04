@@ -46,3 +46,12 @@ exports.update = async (objectId, status) => {
     throw new error();
   }
 };
+
+exports.getByReservationId = async (reservationId) => {
+  try {
+    const data = await requestBookingSchema?.find({ reservationId });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

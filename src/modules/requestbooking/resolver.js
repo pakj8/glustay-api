@@ -10,6 +10,11 @@ const resolver = {
     async getRequestBooking(_) {
       return await requestBookingController?.getRequestBooking();
     },
+    async getRequestBookingByReservationId(_, { reservationId }) {
+      return await requestBookingController?.getRequestBookingByReservationId(
+        reservationId
+      );
+    },
   },
   Mutation: {
     async createRequestBooking(_, { RequestInput }) {
