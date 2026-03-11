@@ -9,7 +9,11 @@ const bookingSchema = new mongoose.Schema(
     },
     firstName: String,
     lastName: String,
-    reservationId: String,
+    phoneNumber: String,
+    reservationId: {
+      type: String,
+      unique: true,
+    },
     checkinDate: Date,
     checkOutDate: Date,
   },

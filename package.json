@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@aws-sdk/client-sns": "^3.1005.0",
     "apollo-server-express": "^3.13.0",
     "aws-sdk": "^2.1691.0",
     "cors": "^2.8.5",

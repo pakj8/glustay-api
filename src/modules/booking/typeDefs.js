@@ -14,6 +14,7 @@ const typeDefs = gql`
     _id: ID
     firstName: String
     lastName: String
+    phoneNumber: String
     reservationId: String
     checkinDate: Date
     checkOutDate: Date
@@ -24,7 +25,7 @@ const typeDefs = gql`
     hotelId: ID
     firstName: String
     lastName: String
-    reservationId: String
+    phoneNumber: String
     checkinDate: Date
     checkOutDate: Date
   }
