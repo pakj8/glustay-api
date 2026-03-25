@@ -14,6 +14,7 @@ const typeDefs = gql`
     _id: ID
     firstName: String
     lastName: String
+    email: String
     phoneNumber: String
     reservationId: String
     checkinDate: Date
@@ -21,10 +22,16 @@ const typeDefs = gql`
     hotelId: hotel
   }
 
+  type OTPResponse {
+    success: Boolean
+    message: String
+  }
+
   input bookingInput {
     hotelId: ID
     firstName: String
     lastName: String
+    email: String
     phoneNumber: String
     checkinDate: Date
     checkOutDate: Date
@@ -36,6 +43,8 @@ const typeDefs = gql`
 
   type Mutation {
     createUserBooking(bookingInput: bookingInput): Booking
+    sendOtp(email: String): OTPResponse
+    verifyOTP(email: String, otp: String): OTPResponse
   }
 `;
 

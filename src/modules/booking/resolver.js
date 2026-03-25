@@ -1,4 +1,5 @@
 const bookingController = require("./controller");
+const otpService = require("../../models/booking/services");
 
 const resolver = {
   Query: {
@@ -11,6 +12,12 @@ const resolver = {
   Mutation: {
     async createUserBooking(_, { bookingInput }) {
       return await bookingController?.createUserBooking(bookingInput);
+    },
+    async sendOtp(_, { email }) {
+      return await otpService.sendOtp(email);
+    },
+    async verifyOTP(_, { email, otp }) {
+      return await otpService?.verifyOTP(email, otp);
     },
   },
 };

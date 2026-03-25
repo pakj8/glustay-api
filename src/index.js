@@ -32,6 +32,7 @@ async function startServer() {
   server.applyMiddleware({ app });
 
   const PORT = process.env.PORT || 4000;
+  console.log(process.env.MONGO_URI);
 
   mongoose
     .connect(process.env.MONGO_URI)
