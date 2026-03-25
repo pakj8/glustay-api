@@ -10,6 +10,7 @@ const bookingSchema = new mongoose.Schema(
     firstName: String,
     lastName: String,
     phoneNumber: String,
+    email: String,
     reservationId: {
       type: String,
       unique: true,
