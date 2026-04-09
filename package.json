@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.86.1",
     "@aws-sdk/client-sns": "^3.1005.0",
     "apollo-server-express": "^3.13.0",
     "aws-sdk": "^2.1691.0",

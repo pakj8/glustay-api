@@ -7,4 +7,5 @@ exports.MONGOOSE_MODEL = {
   RAISECOMPLAINT: "raisecomplaint",
   WEBCHECKOUT: "webcheckout",
   EVENTSANDACTIVITIES: "eventandactivitie",
+  EVENTBOOKING: "eventbooking",
 };
