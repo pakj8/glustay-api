@@ -85,8 +85,8 @@ exports.sendOtp = async (email) => {
 
     return { success: true, messages: "OTP sent successfully" };
   } catch (error) {
-    console.error(error);
-    throw new Error(error);
+    console.error("OTP Send Error:", error.message);
+    return { success: false, message: error.message };
   }
 };
 

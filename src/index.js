@@ -15,6 +15,7 @@ async function startServer() {
       "http://localhost:3000",
       "http://localhost:3001",
       "https://glustay-web.vercel.app",
+      "https://glustay-admin-production.up.railway.app",
     ],
     credentials: true,
   };
