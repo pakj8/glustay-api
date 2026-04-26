@@ -18,3 +18,11 @@ exports.createEventBooking = async (bookingInput) => {
     throw new error();
   }
 };
+
+exports.getEventCount = async (eventId) => {
+  try {
+    return await eventBookingService?.getCount(eventId);
+  } catch (error) {
+    console.error(error);
+  }
+};

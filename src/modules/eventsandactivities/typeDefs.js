@@ -1,5 +1,4 @@
 const { gql } = require("apollo-server-express");
-
 const typeDefs = gql`
   scalar Date
 
@@ -20,6 +19,9 @@ const typeDefs = gql`
     tags: [String]
     description: String
     hotelId: hotel
+    noOfSpots: Int
+    createdAt: Date
+    updatedAt: Date
   }
 
   input eventsInput {
@@ -33,6 +35,12 @@ const typeDefs = gql`
     pricePerPerson: String
     tags: [String]
     description: String
+    noOfSpots: String
+  }
+
+  type BookingStatus {
+    status: Boolean
+    message: String
   }
 
   type Query {
@@ -43,7 +51,7 @@ const typeDefs = gql`
 
   type Mutation {
     createEvents(eventsInput: eventsInput): Events
+    updateEvent(_id: ID, eventsInput: eventsInput): Events
   }
 `;
-
 module.exports = typeDefs;

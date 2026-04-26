@@ -16,6 +16,9 @@ const resolver = {
     async createEvents(_, { eventsInput }) {
       return await eventsController?.createEvents(eventsInput);
     },
+    async updateEvent(_, { _id, eventsInput }) {
+      return await eventsController?.updateEvent(_id, eventsInput);
+    },
   },
 };
 

@@ -1,9 +1,18 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  scalar Date
+
+  type EventId {
+    _id: ID
+    name: String
+    date: Date
+    time: String
+  }
+
   type EventBooking {
     _id: ID
-    eventId: ID
+    eventId: EventId
     bookingId: ID
     hotelId: ID
     firstName: String
@@ -14,6 +23,8 @@ const typeDefs = gql`
     totalAmount: String
     reservationId: String
     eventBookingId: String
+    createdAt: Date
+    updatedAt: Date
   }
 
   input eventBookingInput {
@@ -31,6 +42,7 @@ const typeDefs = gql`
 
   type Query {
     getEventsBookingByReservationId(reservationId: String): [EventBooking]
+    getEventBookingCount(eventId: ID): Int
   }
 
   type Mutation {

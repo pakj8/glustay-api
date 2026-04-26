@@ -12,7 +12,9 @@ exports.createEvent = async (eventsInput) => {
 
 exports.getAll = async () => {
   try {
-    const data = await eventsSchema?.find();
+    const data = await eventsSchema
+      ?.find()
+      ?.populate("hotelId", "_id hotelName");
     return data;
   } catch (error) {
     console.log(error);
@@ -41,5 +43,19 @@ exports.getByHotelId = async (hotelId) => {
   } catch (error) {
     console.log(error);
     throw new error();
+  }
+};
+
+exports.updateEvent = async (_id, eventsInput) => {
+  try {
+    const updated = await eventsSchema?.findByIdAndUpdate(
+      _id,
+      { ...eventsInput },
+      { new: true }
+    );
+    return updated ? updated.toObject() : null;
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
   }
 };

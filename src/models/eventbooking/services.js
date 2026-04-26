@@ -3,7 +3,9 @@ const hotelsSchema = require("../hotels/schema"); // ✅ missing import
 
 exports.getEventById = async (reservationId) => {
   try {
-    return await eventSchema?.find({ reservationId }); // ✅ fixed query object
+    return await eventSchema
+      ?.find({ reservationId })
+      .populate("eventId", "name date time");
   } catch (error) {
     console.log(error);
     throw new Error(error);
@@ -33,9 +35,24 @@ exports.createBooking = async (bookingInput) => {
   try {
     const { eventBookingId: _, ...rest } = bookingInput;
     const eventBookingId = await generateEventId(bookingInput?.hotelId);
-    console.log("Generated eventBookingId:", eventBookingId); // ✅ debug log
     const create = await eventSchema?.create({ ...rest, eventBookingId });
     return create ? create.toObject() : null;
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+exports.getCount = async (eventId) => {
+  try {
+    const bookings = await eventSchema?.find({ eventId });
+
+    // ✅ Sum all numberOfGuests
+    const totalGuests = bookings?.reduce((acc, booking) => {
+      return acc + parseInt(booking?.numberOfGuests || 0);
+    }, 0);
+
+    return totalGuests;
   } catch (error) {
     console.log(error);
     throw new Error(error);

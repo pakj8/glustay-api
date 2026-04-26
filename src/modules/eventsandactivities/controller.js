@@ -39,3 +39,11 @@ exports.getEventsByHotelId = async (hotelId) => {
     throw new error();
   }
 };
+
+exports.updateEvent = async (_id, eventsInput) => {
+  try {
+    return await eventsServices?.updateEvent(_id, eventsInput);
+  } catch (error) {
+    console.log(error);
+  }
+};
