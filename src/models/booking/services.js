@@ -1,4 +1,5 @@
 const bookingSchema = require("./schema");
+const { Resend } = require("resend");
 const hotelsSchema = require("../hotels/schema");
 const crypto = require("crypto");
 const nodemailder = require("nodemailer");
@@ -62,19 +63,60 @@ exports.createBooking = async (bookingInput) => {
 //   },
 // });
 
-const transporter = nodemailder.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: false,
-  family: 4,
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
+// const transporter = nodemailder.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 465,
+//   secure: false,
+//   family: 4,
+//   auth: {
+//     user: process.env.GMAIL_USER,
+//     pass: process.env.GMAIL_APP_PASSWORD,
+//   },
+//   tls: {
+//     rejectUnauthorized: false,
+//   },
+// });
+
+// exports.sendOtp = async (email) => {
+//   try {
+//     const otp = generateOTP();
+//     otpStore.set(email, { otp, expiresAt: Date.now() + OTP_EXPIRE_MS });
+
+//     await transporter?.sendMail({
+//       from: process.env.GMAIL_USER,
+//       to: email,
+//       subject: "Your OTP Verification Code",
+//       html: `
+//         <h2>OTP Verification</h2>
+//         <p>Your verification code is: <strong>${otp}</strong></p>
+//         <p>Valid for 5 minutes.</p>
+//       `,
+//     });
+
+//     return { success: true, messages: "OTP sent successfully" };
+//   } catch (error) {
+//     console.error("OTP Send Error:", error.message);
+//     return { success: false, message: error.message };
+//   }
+// };
+
+// exports.verifyOTP = (email, otp) => {
+//   try {
+//     const record = otpStore.get(email);
+//     if (!record)
+//       return { success: false, message: "OTP not found. Request a new one." };
+//     if (Date.now() > record.expiresAt) {
+//       otpStore.delete(email);
+//       return { success: false, message: "OTP expired. Request a new one." };
+//     }
+//     if (record.otp !== otp) return { success: false, message: "Invalid OTP." };
+//     otpStore.delete(email);
+//     return { success: true, message: "OTP verified successfully" };
+//   } catch (error) {
+//     console.error(error);
+//     throw new Error(error);
+//   }
+// };
 
 const otpStore = new Map();
 const OTP_EXPIRE_MS = 5 * 60 * 1000;
@@ -83,11 +125,13 @@ const generateOTP = () => crypto.randomInt(100000, 999999).toString();
 
 exports.sendOtp = async (email) => {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const otp = generateOTP();
     otpStore.set(email, { otp, expiresAt: Date.now() + OTP_EXPIRE_MS });
 
-    await transporter?.sendMail({
-      from: process.env.GMAIL_USER,
+    await resend.emails.send({
+      from: "onboarding@resend.dev", // ✅ use this for testing, no domain needed
       to: email,
       subject: "Your OTP Verification Code",
       html: `
@@ -97,9 +141,9 @@ exports.sendOtp = async (email) => {
       `,
     });
 
-    return { success: true, messages: "OTP sent successfully" };
+    return { success: true, message: "OTP sent to email successfully" };
   } catch (error) {
-    console.error("OTP Send Error:", error.message);
+    console.error("OTP error:", error);
     return { success: false, message: error.message };
   }
 };
