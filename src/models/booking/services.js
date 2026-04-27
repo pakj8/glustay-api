@@ -64,7 +64,7 @@ exports.createBooking = async (bookingInput) => {
 
 const transporter = nodemailder.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
+  port: 465,
   secure: false,
   family: 4,
   auth: {
