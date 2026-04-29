@@ -43,6 +43,7 @@ const typeDefs = gql`
   type Query {
     getEventsBookingByReservationId(reservationId: String): [EventBooking]
     getEventBookingCount(eventId: ID): Int
+    getEventBookingDetailsByEventBookingId(eventBookingId: String): EventBooking
   }
 
   type Mutation {

@@ -10,6 +10,11 @@ const resolver = {
     async getEventBookingCount(_, { eventId }) {
       return await eventBookingController?.getEventCount(eventId);
     },
+    async getEventBookingDetailsByEventBookingId(_, { eventBookingId }) {
+      return await eventBookingController?.getEventByEventBookingId(
+        eventBookingId
+      );
+    },
   },
   Mutation: {
     async createEventBooking(_, { bookingInput }) {

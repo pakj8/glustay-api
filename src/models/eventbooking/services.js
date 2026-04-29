@@ -58,3 +58,13 @@ exports.getCount = async (eventId) => {
     throw new Error(error);
   }
 };
+
+exports.eventBookingDetails = async (eventBookingId) => {
+  try {
+    return await eventSchema
+      ?.findOne({ eventBookingId })
+      .populate("eventId", "name date time");
+  } catch (error) {
+    console.error(error);
+  }
+};
