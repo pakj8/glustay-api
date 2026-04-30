@@ -131,7 +131,7 @@ exports.sendOtp = async (email) => {
     otpStore.set(email, { otp, expiresAt: Date.now() + OTP_EXPIRE_MS });
 
     await resend.emails.send({
-      from: "onboarding@resend.dev", // ✅ use this for testing, no domain needed
+      from: "no-reply@glustay.dev", // ✅ use this for testing, no domain needed
       to: email,
       subject: "Your OTP Verification Code",
       html: `

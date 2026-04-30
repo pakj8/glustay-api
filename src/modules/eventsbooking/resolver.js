@@ -15,6 +15,9 @@ const resolver = {
         eventBookingId
       );
     },
+    async getAllEventBookings(_) {
+      return await eventBookingController?.getAllEventBookings();
+    },
   },
   Mutation: {
     async createEventBooking(_, { bookingInput }) {

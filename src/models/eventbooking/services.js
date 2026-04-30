@@ -63,7 +63,19 @@ exports.eventBookingDetails = async (eventBookingId) => {
   try {
     return await eventSchema
       ?.findOne({ eventBookingId })
-      .populate("eventId", "name date time");
+      .populate("eventId", "name date time")
+      .populate("hotelId", "_id hotelName");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+exports.getAllEventBookings = async () => {
+  try {
+    return await eventSchema
+      ?.find()
+      .populate("eventId", "name date time")
+      .populate("hotelId", "_id hotelName");
   } catch (error) {
     console.error(error);
   }

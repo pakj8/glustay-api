@@ -34,3 +34,11 @@ exports.getEventByEventBookingId = async (eventBookingId) => {
     console.error(error);
   }
 };
+
+exports.getAllEventBookings = async () => {
+  try {
+    return await eventBookingService?.getAllEventBookings();
+  } catch (error) {
+    console.error(error);
+  }
+};

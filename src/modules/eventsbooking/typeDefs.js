@@ -10,11 +10,16 @@ const typeDefs = gql`
     time: String
   }
 
+  type HotelId {
+    _id: ID
+    hotelName: String
+  }
+
   type EventBooking {
     _id: ID
     eventId: EventId
     bookingId: ID
-    hotelId: ID
+    hotelId: HotelId
     firstName: String
     lastName: String
     email: String
@@ -44,6 +49,7 @@ const typeDefs = gql`
     getEventsBookingByReservationId(reservationId: String): [EventBooking]
     getEventBookingCount(eventId: ID): Int
     getEventBookingDetailsByEventBookingId(eventBookingId: String): EventBooking
+    getAllEventBookings: [EventBooking]
   }
 
   type Mutation {
